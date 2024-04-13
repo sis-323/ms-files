@@ -21,7 +21,7 @@ class MinioConfig {
     @Bean
     @Primary
     fun minioClient(): MinioClient {
-        return io.minio.MinioClient.builder()
+        return MinioClient.builder()
             .endpoint(minioUrl)
             .credentials(minioAccessKey, minioSecretKey)
             .build()
