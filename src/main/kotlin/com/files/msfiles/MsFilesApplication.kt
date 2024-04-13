@@ -7,7 +7,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients
 
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableFeignClients(basePackages = ["com.files.*"])
+@EnableFeignClients()
 class MsFilesApplication
 
 fun main(args: Array<String>) {
