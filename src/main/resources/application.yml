@@ -29,7 +29,7 @@ eureka:
 
 minio:
     url: http://localhost:9000
-    access-key: WsXQaM2zBxdWLMjkqJRb
-    secret-key: ${MINIO_SECRET_KEY:WsXQaM2zBxdWLMjkqJRb}
+    access-key: XdkMXb6fY6Rg8rXAhGXw
+    secret-key: ${MINIO_SECRET_KEY:K1WgO7CEZr3QBU9MUpr26l0xpUl0IafYnb0lKbNT}
     bucket-name: pm-files
 

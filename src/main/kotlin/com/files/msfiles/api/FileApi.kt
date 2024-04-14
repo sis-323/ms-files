@@ -1,7 +1,6 @@
 package com.files.msfiles.api
 
 import com.files.msfiles.bl.FileBl
-import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
@@ -17,10 +16,22 @@ class FileApi constructor(
 
     @PostMapping("/upload")
     fun uploadFile(
-            @RequestParam("files") files: List<MultipartFile>
-    ): List<String>
+            @RequestParam("requirements") requirements: List<MultipartFile>,
+            @RequestParam("proposalFile") proposalFile: MultipartFile,
+            @RequestParam("proposal") proposalTitle: String,
+            @RequestParam("kcId") personKcUuid: String
+
+    ): String
     {
-        return fileBl.uploadFile(files)
+        fileBl.uploadProposal(
+                requirements,
+                proposalFile,
+                proposalTitle,
+                personKcUuid
+        )
+        return "Files uploaded successfully"
     }
+
+
 
 }
