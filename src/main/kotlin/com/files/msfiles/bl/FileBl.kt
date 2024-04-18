@@ -24,6 +24,7 @@ class FileBl constructor(
     companion object{
         val logger: Logger = LoggerFactory.getLogger(FileBl::class.java)
     }
+    //TODO: fix this goofy ahh function
     fun uploadProposal(files: List<MultipartFile>, proposalFile: MultipartFile,
                        proposalTitle: String, personKcUuid: String) {
         val requirements = mutableListOf<FileDto>()
@@ -43,11 +44,7 @@ class FileBl constructor(
                 personKcUuid = personKcUuid
         )
 
-
-        var fileAux = File(
-                fileName = "",
-                md5 = ""
-        )
+        var fileAux: File
         for (file in files) {
             val fileDto = minioService.uploadFile(file)
             requirements.add(fileDto!!)
@@ -68,14 +65,11 @@ class FileBl constructor(
 
         }
 
-
         val proposalFileDto = FileDto(
                 fileId = proposalFileEntity.fileId,
                 fileName = proposalFileEntity.fileName!!,
                 md5 = proposalFileEntity.md5!!
         )
-
-
 
         val requestDto = SaveProposalDto(
                 fileDto = proposalFileDto,
@@ -85,7 +79,6 @@ class FileBl constructor(
 
         logger.info("proposal: ${requestDto.fileDto}")
         logger.info("requirements: ${requestDto.requirements}")
-
 
         enrollmentService.saveProposal(requestDto)
 
