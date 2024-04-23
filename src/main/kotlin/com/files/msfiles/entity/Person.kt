@@ -39,5 +39,8 @@ class Person {
     @JoinColumn(name = "id_modalidad")
     var modality: Modality? = null
 
+    @Column(name = "semestre")
+    var semester: String? = null
+
 
 }
