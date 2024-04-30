@@ -6,9 +6,9 @@ spring:
   application:
     name: ms-files
   datasource:
-    url: ${DB_URL:jdbc:postgresql://localhost:5432/sis-323}
-    username: ${DB_USER:postgres}
-    password: ${DB_PASSWORD:admin}
+    url: ${POSTGRES_URL:jdbc:postgresql://localhost:5432/sis-323}
+    username: ${POSTGRES_USER:postgres}
+    password: ${POSTGRES_PASSWORD:admin}
     jpa:
       hibernate:
         ddl-auto: none
@@ -24,12 +24,12 @@ keycloak:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: ${DISCOVERY_SERVER_URL:http://localhost:8761/eureka/}
 
 
 minio:
-    url: http://localhost:9000
-    access-key: XdkMXb6fY6Rg8rXAhGXw
-    secret-key: ${MINIO_SECRET_KEY:K1WgO7CEZr3QBU9MUpr26l0xpUl0IafYnb0lKbNT}
-    bucket-name: pm-files
+    url: ${MINIO_URL:http://localhost:9000}
+    access-key: ${MINIO_ROOT_USER:XdkMXb6fY6Rg8rXAhGXw}
+    secret-key: ${MINIO_ROOT_PASSWORD:K1WgO7CEZr3QBU9MUpr26l0xpUl0IafYnb0lKbNT}
+    bucket-name: ${MINIO_BUCKET_NAME:pm-files}
 
