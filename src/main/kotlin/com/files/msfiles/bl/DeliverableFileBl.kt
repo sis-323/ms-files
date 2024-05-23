@@ -2,6 +2,7 @@ package com.files.msfiles.bl
 
 import com.files.msfiles.dao.FileRepository
 import com.files.msfiles.dto.DeliverableDto
+import com.files.msfiles.dto.FileDto
 import com.files.msfiles.entity.File
 import com.files.msfiles.service.EnrollmentService
 import com.files.msfiles.service.MinioService
@@ -41,4 +42,18 @@ class DeliverableFileBl (
         enrollmentService.createDeliverable(deliverableDto)
 
     }
+
+    fun uploadStudentDeliverable(
+        file: MultipartFile,
+        title: String
+    ) : FileDto{
+        val fileDto = minioService.uploadFile(file)
+        val fileEntity = File(
+            fileName = fileDto?.fileName!!,
+            md5 = fileDto.md5
+        )
+        fileRepository.save(fileEntity)
+        return fileDto
+    }
+
 }

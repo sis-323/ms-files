@@ -6,7 +6,7 @@ spring:
   application:
     name: ms-files
   datasource:
-    url: ${DB_URL:jdbc:postgresql://localhost:5432/sis-323}
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/sis-323-test}
     username: ${DB_USER:postgres}
     password: ${DB_PASSWORD:admin}
     jpa:

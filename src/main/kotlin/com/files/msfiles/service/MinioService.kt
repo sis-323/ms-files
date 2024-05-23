@@ -29,7 +29,8 @@ class MinioService constructor(
         logger.info("Uploading file to minio")
         verifyBucket()
         val cleanedFileName = file.originalFilename?.replace("\\s".toRegex(), "")
-        val fileName = "${cleanedFileName}-${UUID.randomUUID()}.${file.originalFilename?.split(".")?.get(1)}"
+        //val fileName = "${cleanedFileName}-${UUID.randomUUID()}.${file.originalFilename?.split(".")?.get(1)}"
+        val fileName = "Archivo"
         minioClient.putObject(
                 PutObjectArgs.builder()
                         .bucket(bucket)
@@ -55,6 +56,16 @@ class MinioService constructor(
                             .build()
             )
         }
+    }
+    fun findFileUrl(fileName: String): String {
+        val url = minioClient.getPresignedObjectUrl(
+                io.minio.GetPresignedObjectUrlArgs.builder()
+                    .method(io.minio.http.Method.GET)
+                        .bucket(bucket)
+                        .`object`(fileName)
+                        .build()
+        )
+        return url
     }
 
 }

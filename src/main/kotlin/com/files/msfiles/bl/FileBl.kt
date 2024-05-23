@@ -85,6 +85,11 @@ class FileBl constructor(
 
     }
 
+    fun findFileUrl(fileName: String): String {
+        logger.info("Finding file url ${fileName}")
+        return minioService.findFileUrl(fileName)
+    }
+
 
 
 
