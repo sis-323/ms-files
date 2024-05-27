@@ -9,7 +9,6 @@ import org.springframework.web.multipart.MultipartFile
 
 @RestController
 @RequestMapping("/api/v1/files")
-@CrossOrigin(origins = ["*"])
 class FileApi constructor(
         private val fileBl: FileBl,
     private val deliverableFileBl: DeliverableFileBl
