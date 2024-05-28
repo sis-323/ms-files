@@ -47,8 +47,9 @@ class DeliverableFileBl (
 
     fun uploadStudentDeliverable(studentKcId: String,
         file: MultipartFile,
-        deliverableId: Long
+        deliverableId: String
     ) : FileDto{
+        val deliverableIdLong = deliverableId.toLong()
         val fileDto = minioService.uploadFile(file)
         val fileEntity = File(
             fileName = fileDto?.fileName!!,
@@ -60,7 +61,7 @@ class DeliverableFileBl (
             fileName = fileDto.fileName,
             md5 = fileDto.md5
         )
-        enrollmentService.uploadStudentDeliverable(studentKcId, deliverableId, fileDto2)
+        enrollmentService.uploadStudentDeliverable(studentKcId, deliverableIdLong, fileDto2)
         return fileDto
     }
 

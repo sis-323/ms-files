@@ -62,7 +62,7 @@ class FileApi constructor(
     fun uploadStudentDeliverable(
             @RequestParam("file") file: MultipartFile,
             @RequestParam("kcId") kcId: String,
-            @RequestParam("deliverableId") deliverableId: Long
+            @RequestParam("deliverableId") deliverableId: String
     ): ResponseEntity<ResponseDto<String>> {
         deliverableFileBl.uploadStudentDeliverable(kcId,file,deliverableId)
         return ResponseEntity.ok(ResponseDto(null,
