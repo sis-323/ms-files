@@ -20,7 +20,7 @@ class FileApi constructor(
             @RequestParam("requirements") requirements: List<MultipartFile>,
             @RequestParam("proposalFile") proposalFile: MultipartFile,
             @RequestParam("proposal") proposalTitle: String,
-            @RequestParam("kcId") personKcUuid: String): String
+            @RequestParam("kcId") personKcUuid: String): ResponseEntity<ResponseDto<String>>
     {
         fileBl.uploadProposal(
                 requirements,
@@ -28,7 +28,9 @@ class FileApi constructor(
                 proposalTitle,
                 personKcUuid
         )
-        return "Files uploaded successfully"
+        return ResponseEntity.ok(ResponseDto(null,
+                "La propuesta se ha subido correctamente",
+                true))
     }
 
     @PostMapping("/deliverable")

@@ -29,8 +29,8 @@ class MinioService constructor(
         logger.info("Uploading file to minio")
         verifyBucket()
         val cleanedFileName = file.originalFilename?.replace("\\s".toRegex(), "")
-        //val fileName = "${cleanedFileName}-${UUID.randomUUID()}.${file.originalFilename?.split(".")?.get(1)}"
-        val fileName = "Archivo"
+        //val cleanedFileName = "${cleanedFileName}-${UUID.randomUUID()}.${file.originalFilename?.split(".")?.get(1)}"
+        val fileName = cleanedFileName
         minioClient.putObject(
                 PutObjectArgs.builder()
                         .bucket(bucket)
@@ -41,7 +41,7 @@ class MinioService constructor(
         )
         logger.info("File uploaded successfully")
         val fileDto = FileDto(
-                fileName = fileName,
+                fileName = fileName!!,
                 md5 = "md5"
         )
         return fileDto
