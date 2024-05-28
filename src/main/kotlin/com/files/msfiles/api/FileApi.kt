@@ -61,11 +61,10 @@ class FileApi constructor(
     @PostMapping("/upload/student/deliverable")
     fun uploadStudentDeliverable(
             @RequestParam("file") file: MultipartFile,
-            @RequestParam("title") title: String,
+            @RequestParam("kcId") kcId: String,
+            @RequestParam("deliverableId") deliverableId: Long
     ): ResponseEntity<ResponseDto<String>> {
-        deliverableFileBl.uploadStudentDeliverable(
-                file,title
-        )
+        deliverableFileBl.uploadStudentDeliverable(kcId,file,deliverableId)
         return ResponseEntity.ok(ResponseDto(null,
                 "Deliverable uploaded successfully",
                 true))

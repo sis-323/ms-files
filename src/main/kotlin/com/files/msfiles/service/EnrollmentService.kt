@@ -16,4 +16,9 @@ interface EnrollmentService {
     @PostMapping("/api/v1/deliverable/{fileId}")
     fun createDeliverable(@RequestBody deliverableDto: DeliverableDto, @PathVariable fileId: Long):
             ResponseEntity<ResponseDto<String>>
+
+    @PostMapping("/api/v1/deliverable/student/{studentKcId}/deliverable/{deliverableId}")
+    fun uploadStudentDeliverable(@PathVariable studentKcId: String,
+                                 @PathVariable deliverableId: Long,
+                                 @RequestBody fileDto: FileDto):ResponseEntity<ResponseDto<String>>
 }
